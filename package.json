@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "banckend da minha aplicação de cadastro de cliente",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaumpauloferreira/backend.git"
+  },
+  "keywords": [
+    "backende",
+    "aula",
+    "programação",
+    "internet"
+  ],
+  "author": "João Paulo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaumpauloferreira/backend/issues"
+  },
+  "homepage": "https://github.com/jaumpauloferreira/backend#readme",
+  "dependencies": {
+    "mysql2": "^3.9.2"
+  }
+}
+
+
+
+
+
+
+
+
+
