@@ -4,33 +4,35 @@
 import Cliente from "./Modelos/Cliente.js";
 
 
-const cliente = new Cliente(0, "João Paulo Ferreira da Silva", 
+const cliente = new Cliente(5, "Vitor Paulo Ferreira da Silva", 
 "jaumpauloferreira@gmail.com", "(14)99878.4400",
-"rg", "cpf", "endereco", "ingressos",
+"rg", "cpfz", "endereco", "ingressos",
 "valor");
 
 //nos métodos assíncronos é preciso manipular as promessas (Promises)
 //Então, em algum momento o método trará uma resposta e o nosso programa
 //não saberá quando isso irá acontecer.
-
+/*
 cliente.gravar().then(() =>{
     console.log("Cliente gravado com sucesso!");
 }).catch((erro) => {
     console.log(erro);
-});
+}); 
 
-/*cliente.atualizar().then(() =>{
+
+cliente.atualizar().then(() =>{
     console.log("Cliente atualizado com sucesso!");
 }).catch((erro) => {
     console.log(erro);
-});*/
+});
 
-/*cliente.excluir().then(() =>{
+
+cliente.excluir().then(() =>{
     console.log("Cliente excluído com sucesso!");
 }).catch((erro) => {
     console.log(erro);
 });
-
+*/
 const clienteQQ = new Cliente();
 
 clienteQQ.consultar(3).then((listaClientes) => {
@@ -40,4 +42,4 @@ clienteQQ.consultar(3).then((listaClientes) => {
     }
 }).catch((erro) => {
     console.log("Não foi possível consultar o cliente", erro);
-});*/
+});
