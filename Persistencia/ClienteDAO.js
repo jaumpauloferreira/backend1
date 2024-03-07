@@ -5,9 +5,10 @@ export default class ClienteDAO{
     async gravar(cliente){
         if (cliente instanceof Cliente){
             const conexao = await conectar();
-            const sql = `INSERT INTO cliente (nome, email, telefone, rg, cpf, endereco, ingressos, valor) 
-                         values (?, ?, ?, ?, ?, ?, ?, ?)`;
+            const sql = `INSERT INTO cliente (codigo, nome, email, telefone, rg, cpf, endereco, ingressos, valor) 
+                         values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
             const parametros = [
+              cliente.codigo,
               cliente.nome,
               cliente.email,
               cliente.telefone,
@@ -15,7 +16,7 @@ export default class ClienteDAO{
               cliente.cpf,
               cliente.endereco,
               cliente.ingressos,
-              cliente.valor
+              cliente.valor,
              ];
             const [resultados, campos] = await conexao.execute(sql,parametros);
             //funcionalidade interessante oferecida pela biblioteca mysql2
@@ -31,7 +32,6 @@ export default class ClienteDAO{
                          cpf = ?, endereço = ?, ingressos = ?,
                          valor = ? WHERE id = ?`;
           const parametros = [
-            
             cliente.nome,
             cliente.email,
             cliente.telefone,
@@ -39,7 +39,8 @@ export default class ClienteDAO{
             cliente.cpf,
             cliente.endereco,
             cliente.ingressos,
-            cliente.valor
+            cliente.valor,
+            cliente.codigo
            ];
     
 

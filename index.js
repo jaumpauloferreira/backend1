@@ -4,7 +4,7 @@
 import Cliente from "./Modelos/Cliente.js";
 
 
-const cliente = new Cliente(3, "João Paulo Ferreira da Silva", 
+const cliente = new Cliente(0, "João Paulo Ferreira da Silva", 
 "joaopaulofio@hotmail.com", "(14)99878.4400",
 "rg", "cpf", "endereco", "ingressos",
 "valor");
@@ -13,11 +13,11 @@ const cliente = new Cliente(3, "João Paulo Ferreira da Silva",
 //Então, em algum momento o método trará uma resposta e o nosso programa
 //não saberá quando isso irá acontecer.
 
-/*cliente.gravar().then(() =>{
+cliente.gravar().then(() =>{
     console.log("Cliente gravado com sucesso!");
 }).catch((erro) => {
     console.log(erro);
-});*/
+});
 
 /*cliente.atualizar().then(() =>{
     console.log("Cliente atualizado com sucesso!");
@@ -29,7 +29,7 @@ const cliente = new Cliente(3, "João Paulo Ferreira da Silva",
     console.log("Cliente excluído com sucesso!");
 }).catch((erro) => {
     console.log(erro);
-});*/
+});
 
 const clienteQQ = new Cliente();
 
@@ -40,5 +40,4 @@ clienteQQ.consultar(3).then((listaClientes) => {
     }
 }).catch((erro) => {
     console.log("Não foi possível consultar o cliente", erro);
-});
-
+});*/
