@@ -5,19 +5,18 @@ export default class ClienteDAO{
     async gravar(cliente){
         if (cliente instanceof Cliente){
             const conexao = await conectar();
-            const sql = `INSERT INTO cliente (codigo, nome, email, telefone, rg, cpf, endereco, ingressos, valor) 
-                         values (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const sql = `INSERT INTO cliente (nome, email, telefone, rg, cpf, endereco, ingressos, valor) 
+            values (?, ?, ?, ?, ?, ?, ?, ?)`;
             const parametros = [
-              cliente.codigo,
-              cliente.nome,
-              cliente.email,
-              cliente.telefone,
-              cliente.rg,
-              cliente.cpf,
-              cliente.endereco,
-              cliente.ingressos,
-              cliente.valor,
-             ];
+                cliente.nome,
+                cliente.email,
+                cliente.telefone,
+                cliente.rg,
+                cliente.cpf,
+                cliente.endereco,
+                cliente.ingressos,
+                cliente.valor
+              ];              
             const [resultados, campos] = await conexao.execute(sql,parametros);
             //funcionalidade interessante oferecida pela biblioteca mysql2
             cliente.codigo = resultados.insertId; //recupera o id gerado pelo banco de dados
@@ -29,7 +28,7 @@ export default class ClienteDAO{
             const conexao = await conectar();
             const sql = `UPDATE cliente SET nome = ?,
                          email = ?, telefone = ?, rg = ?,
-                         cpf = ?, endereço = ?, ingressos = ?,
+                         cpf = ?, endereco = ?, ingressos = ?,
                          valor = ? WHERE id = ?`;
           const parametros = [
             cliente.nome,
@@ -78,7 +77,7 @@ export default class ClienteDAO{
         const [registros] = await conexao.execute(sql, [termoDePesquisa]);
         let listaCliente = [];
         for (const registro of registros) {
-          const cliente = new cliente(
+          const cliente = new Cliente(
             registro.id,
             registro.nome,
             registro.email,

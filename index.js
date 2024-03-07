@@ -5,7 +5,7 @@ import Cliente from "./Modelos/Cliente.js";
 
 
 const cliente = new Cliente(0, "João Paulo Ferreira da Silva", 
-"joaopaulofio@hotmail.com", "(14)99878.4400",
+"jaumpauloferreira@gmail.com", "(14)99878.4400",
 "rg", "cpf", "endereco", "ingressos",
 "valor");
 
