@@ -25,15 +25,7 @@
   },
   "homepage": "https://github.com/jaumpauloferreira/backend#readme",
   "dependencies": {
+    "express": "^4.18.3",
     "mysql2": "^3.9.2"
   }
 }
-
-
-
-
-
-
-
-
-

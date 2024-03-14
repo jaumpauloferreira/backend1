@@ -160,7 +160,7 @@ export default class Cliente {
             "rg": this.#rg,
             "cpf": this.#cpf,
             "endereco": this.#endereco,
-            "ingresso": this.#ingressos,
+            "ingressos": this.#ingressos,
             "valor": this.#valor
             }
     }    
