@@ -4,7 +4,7 @@
 //            domínio da aplicação   endpoint 
 
 import { Router } from 'express';
-import ClienteCtrl from '../Controles/ClienteCtrl';
+import ClienteCtrl from '../Controles/clienteCtrl.js';
 
 const rotaCliente = new Router();
 const cliCtrl = new ClienteCtrl();
