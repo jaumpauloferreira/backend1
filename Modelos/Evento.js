@@ -2,9 +2,9 @@
 //Em orientação a objetos uma classe possui métodos e atributos
 //atributos são características de um objeto
 //metodos são as ações que um objeto pode executar
-import ClienteDAO from "../Persistencia/ClienteDAO.js";
+import EventoDAO from "../Persistencia/EventoDAO.js";
 
-export default class Cliente {
+export default class Evento {
     //atributos são privados
     //somente por meio de métodos públicos é que podemos acessar os atributos de uma classe
     //em javascript definimos atributos privados usando #
@@ -102,10 +102,10 @@ export default class Cliente {
             this.#valor = novoValor;
         }
     
-        //como armazenar os clientes no banco de dados?
+        //como armazenar os eventos no banco de dados?
     
         async gravar(){
-            const dao = new clienteDAO();
+            const dao = new EventoDAO();
             await dao.gravar(this);
         }
     
@@ -124,31 +124,31 @@ export default class Cliente {
         return await dao.consultar(termoDePesquisa);
     }
 
-    //como armazenar os clientes no banco de dados?
+    //como armazenar os eventos no banco de dados?
 
     async gravar(){
-        const dao = new ClienteDAO();
+        const dao = new EventoDAO();
         await dao.gravar(this); //this pode ser compreendido com a seguinte expressão:	"grave a mim mesmo"
     }
 
     async atualizar(){
-        const dao = new ClienteDAO();
+        const dao = new EventoDAO();
         await dao.atualizar(this);
     }
 
     async excluir(){
-        const dao = new ClienteDAO();
+        const dao = new EventoDAO();
         await dao.excluir(this);
     }
 
     async consultar(termoDePesquisa){
-        const dao = new ClienteDAO();
+        const dao = new EventoDAO();
         return await dao.consultar(termoDePesquisa);
     }
 
     //override do método toString da classe pai Object
     toString(){
-        return `Cliente código: ${this.#codigo} -  nome: ${this.#nome}`;
+        return `Evento código: ${this.#codigo} -  nome: ${this.#nome}`;
     }
 
     toJSON(){

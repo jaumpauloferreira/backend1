@@ -1,45 +1,45 @@
 import conectar from "./Conexao.js"; //não esquecer de colocar a extensão .js no final
-import Cliente from "../Modelos/Cliente.js";
+import Evento from "../Modelos/Evento.js";
 //DAO - Data Access Object
-export default class ClienteDAO{
-    async gravar(cliente){
-        if (cliente instanceof Cliente){
+export default class EventoDAO{
+    async gravar(evento){
+        if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `INSERT INTO cliente (nome, email, telefone, rg, cpf, endereco, ingressos, valor) 
+            const sql = `INSERT INTO evento (nome, email, telefone, rg, cpf, endereco, ingressos, valor) 
             values (?, ?, ?, ?, ?, ?, ?, ?)`;
             const parametros = [
-                cliente.nome,
-                cliente.email,
-                cliente.telefone,
-                cliente.rg,
-                cliente.cpf,
-                cliente.endereco,
-                cliente.ingressos,
-                cliente.valor
+                evento.nome,
+                evento.email,
+                evento.telefone,
+                evento.rg,
+                evento.cpf,
+                evento.endereco,
+                evento.ingressos,
+                evento.valor
               ];              
             const [resultados, campos] = await conexao.execute(sql,parametros);
             //funcionalidade interessante oferecida pela biblioteca mysql2
-            cliente.codigo = resultados.insertId; //recupera o id gerado pelo banco de dados
+            evento.codigo = resultados.insertId; //recupera o id gerado pelo banco de dados
         }
     }
 
-    async atualizar(cliente){
-        if (cliente instanceof Cliente){
+    async atualizar(evento){
+        if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `UPDATE cliente SET nome = ?,
+            const sql = `UPDATE evento SET nome = ?,
                          email = ?, telefone = ?, rg = ?,
                          cpf = ?, endereco = ?, ingressos = ?,
                          valor = ? WHERE id = ?`;
           const parametros = [
-            cliente.nome,
-            cliente.email,
-            cliente.telefone,
-            cliente.rg,
-            cliente.cpf,
-            cliente.endereco,
-            cliente.ingressos,
-            cliente.valor,
-            cliente.codigo
+            evento.nome,
+            evento.email,
+            evento.telefone,
+            evento.rg,
+            evento.cpf,
+            evento.endereco,
+            evento.ingressos,
+            evento.valor,
+            evento.codigo
            ];
     
 
@@ -47,18 +47,18 @@ export default class ClienteDAO{
         }
     }
 
-    async excluir(cliente){
-        if (cliente instanceof Cliente){
+    async excluir(evento){
+        if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `DELETE FROM cliente WHERE id = ?`;
+            const sql = `DELETE FROM evento WHERE id = ?`;
             const parametros = [
-                cliente.codigo
+                evento.codigo
             ]
             await conexao.execute(sql,parametros);
         }
     }
 
-    //termo de pesquisa pode ser o código do cliente ou ainda o nome
+    //termo de pesquisa pode ser o código do eventoe ou ainda o nome
     
     async consultar(termoDePesquisa){
         if (termoDePesquisa === undefined){
@@ -66,18 +66,18 @@ export default class ClienteDAO{
         }
         let sql="";
         if (isNaN(parseInt(termoDePesquisa))){ //termo de pesquina não é um número
-            sql = `SELECT * FROM cliente WHERE nome LIKE ?`;
+            sql = `SELECT * FROM evento WHERE nome LIKE ?`;
             termoDePesquisa= '%' + termoDePesquisa + '%';
         }
         else{
-            sql = `SELECT * FROM cliente WHERE id = ?`;
+            sql = `SELECT * FROM evento WHERE id = ?`;
         }
 
         const conexao = await conectar();
         const [registros] = await conexao.execute(sql, [termoDePesquisa]);
-        let listaCliente = [];
+        let listaEvento = [];
         for (const registro of registros) {
-          const cliente = new Cliente(
+          const evento = new Evento(
             registro.id,
             registro.nome,
             registro.email,
@@ -88,8 +88,8 @@ export default class ClienteDAO{
             registro.ingressos,
             registro.valor
           );
-          listaCliente.push(cliente);
+          listaEvento.push(evento);
         }
-        return listaCliente;
+        return listaEvento;
     }
 }
